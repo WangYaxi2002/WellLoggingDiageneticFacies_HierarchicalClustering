@@ -52,7 +52,7 @@ if __name__ == '__main__':
             plt.plot(df4[0], df4[1], 'c*', )
             plt.plot(df5[0], df5[1], 'm*')
 
-            plt.xlabel(data.columns.values[i])
-            plt.ylabel(data.columns.values[j])
+            plt.xlabel(data.columns.values[i + 1])
+            plt.ylabel(data.columns.values[j + 1])
             plt.savefig('../img/2res' + str(i * 4 + j) + '.png')
             plt.show()
