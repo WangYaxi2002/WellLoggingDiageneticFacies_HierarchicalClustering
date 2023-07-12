@@ -48,5 +48,5 @@ if __name__ == '__main__':
 
     plt.xlabel('DEPTH')
     plt.ylabel('CAL')
-    plt.savefig('./res1.png')
+    plt.savefig('../img/1res1.png')
     plt.show()

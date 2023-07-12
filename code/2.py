@@ -54,5 +54,5 @@ if __name__ == '__main__':
 
             plt.xlabel(data.columns.values[i])
             plt.ylabel(data.columns.values[j])
-            plt.savefig('./2res' + str(i * 4 + j) + '.png')
+            plt.savefig('../img/2res' + str(i * 4 + j) + '.png')
             plt.show()
