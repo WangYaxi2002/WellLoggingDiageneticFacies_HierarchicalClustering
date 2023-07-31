@@ -1,12 +1,12 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.manifold import TSNE
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.cluster import AgglomerativeClustering
 
 
+# 导入原始数据
 def load_plyl_data():
     # 看见dataFrame的所有行，不然会省略
     pd.set_option('display.max_columns', None)
@@ -16,6 +16,14 @@ def load_plyl_data():
     return rawData
 
 
+# 获取训练数据
+def get_train_scale(data_x):
+    num_pipeline = Pipeline([('std_scaler', MinMaxScaler())])
+    train_scale = num_pipeline.fit_transform(data_x)
+    return train_scale
+
+
+# 使用层次聚类算法
 def agglomerativeClustering(train_scale):
     ac = AgglomerativeClustering(n_clusters=5)
     clustering = ac.fit(train_scale)
@@ -28,35 +36,26 @@ def agglomerativeClustering(train_scale):
     return clustering
 
 
-def get_train_scale(data_x):
-    num_pipeline = Pipeline([('std_scaler', MinMaxScaler())])
-    train_scale = num_pipeline.fit_transform(data_x)
-    return train_scale
-
-
-def saveImage(labels):
+# 保存图片
+def saveImage(labels: list):
     # 对6种组合（12种结果）保存图片
     for i in range(4):
         for j in range(4):
             if i == j:
                 continue
-
             df = pd.DataFrame(data_x[:, [i, j]])
-
             df['labels'] = labels
             df1 = df[df['labels'] == 0]
             df2 = df[df['labels'] == 1]
             df3 = df[df['labels'] == 2]
             df4 = df[df['labels'] == 3]
             df5 = df[df['labels'] == 4]
-
-            plt.figure(figsize=(9, 6))
+            plt.figure(figsize=(10, 10))
             plt.plot(df1[0], df1[1], 'bo', label='簇1')
-            plt.plot(df2[0], df2[1], 'g*', )
-            plt.plot(df3[0], df3[1], 'r*')
-            plt.plot(df4[0], df4[1], 'c*', )
-            plt.plot(df5[0], df5[1], 'm*')
-
+            plt.plot(df2[0], df2[1], 'g*', label='簇2')
+            plt.plot(df3[0], df3[1], 'r*', label='簇3')
+            plt.plot(df4[0], df4[1], 'c*', label='簇4')
+            plt.plot(df5[0], df5[1], 'm*', label='簇5')
             plt.xlabel(data.columns.values[i + 1])
             plt.ylabel(data.columns.values[j + 1])
             plt.savefig('../img/2res' + str(i * 4 + j) + '.png')

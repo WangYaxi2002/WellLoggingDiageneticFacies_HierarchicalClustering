@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/层次聚类.iml" filepath="$PROJECT_DIR$/.idea/层次聚类.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../高斯混合/.idea/高斯混合.iml" filepath="$PROJECT_DIR$/../高斯混合/.idea/高斯混合.iml" />
     </modules>
   </component>
 </project>
