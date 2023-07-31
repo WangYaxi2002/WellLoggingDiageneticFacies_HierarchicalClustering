@@ -65,10 +65,8 @@ if __name__ == '__main__':
     data_x = data.values[:, 1:5]
     train_scale = get_train_scale(data_x)
     clustering, model = agglomerativeClustering(train_scale)
-    # saveImage(train_scale, list(clustering.labels_))
 
-    # plt.title('Hierarchical Clustering Dendrogram')
     plot_dendrogram(model, truncate_mode='level', p=5)
-    # plt.xlabel("Number of points in node (or index of point if no parenthesis).")
+
     plt.savefig('../img/树形图.png')
     plt.show()

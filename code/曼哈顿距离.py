@@ -1,3 +1,4 @@
+# 使用曼哈顿距离算法聚类
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -27,7 +28,7 @@ def get_train_scale(data_x):
 def agglomerativeClustering(train_scale):
     ac = AgglomerativeClustering(n_clusters=5, metric='manhattan', linkage='complete')
     clustering = ac.fit(train_scale)
-    
+
     # 保存聚类结果到csv文件
     # with open('res.csv', 'a') as fp:
     #     for i in clustering.labels_:
