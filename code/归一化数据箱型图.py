@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.cluster import AgglomerativeClustering
+import matplotlib.patches as mpatches
 
 
 # 导入原始数据
@@ -38,7 +39,7 @@ def agglomerativeClustering(train_scale):
 
 # 保存图片
 def saveImage(data, res):
-    labels = ["A", "B", "C", "D"]
+    labels = ['CAL', 'AC', 'GR', 'SP']
     colors = [(1, 0, 0,), (0, 1, 0), (0, 0, 1), (1, 1, 0)]
     df = pd.DataFrame(data)
     df['labels'] = res
@@ -80,6 +81,11 @@ def saveImage(data, res):
 
     x_position = [1, 2.5, 4, 5.5, 7]
     x_position_fmt = ['1', '2', '3', '4', '5']
+
+    legend_handles = []
+    for color, label in zip(colors, labels):
+        legend_handles.append(mpatches.Patch(color=color, label=label))
+    plt.legend(handles=legend_handles)
     plt.xticks([i + 0.8 / 2 for i in x_position], x_position_fmt)
     plt.savefig('../img/归一化数据箱型图.png')
     plt.show()
