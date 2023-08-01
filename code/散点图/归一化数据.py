@@ -11,7 +11,7 @@ def load_plyl_data():
     # 看见dataFrame的所有行，不然会省略
     pd.set_option('display.max_columns', None)
     pd.set_option('display.max_rows', None)
-    rawData = pd.read_csv(filepath_or_buffer='../data/BAI246_CAL_GR_AC_SP.csv', header=0, encoding='utf-8',
+    rawData = pd.read_csv(filepath_or_buffer='../../data/BAI246_CAL_GR_AC_SP.csv', header=0, encoding='utf-8',
                           dtype=np.float32, on_bad_lines='skip')
     return rawData
 
@@ -58,7 +58,7 @@ def saveImage(data, labels: list, headers):
             plt.plot(df5[0], df5[1], 'm*', label='簇5')
             plt.xlabel(headers[i + 1])
             plt.ylabel(headers[j + 1])
-            plt.savefig('../img/归一化res' + str(i * 4 + j) + '.png')
+            plt.savefig('../../img/散点图/归一化数据图' + headers[i + 1] + '-' + headers[j + 1] + '.png')
             plt.show()
 
 

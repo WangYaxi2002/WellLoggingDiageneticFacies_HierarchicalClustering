@@ -12,7 +12,7 @@ def load_plyl_data():
     # 看见dataFrame的所有行，不然会省略
     pd.set_option('display.max_columns', None)
     pd.set_option('display.max_rows', None)
-    rawData = pd.read_csv(filepath_or_buffer='../data/BAI246_CAL_GR_AC_SP.csv', header=0, encoding='utf-8',
+    rawData = pd.read_csv(filepath_or_buffer='../../data/BAI246_CAL_GR_AC_SP.csv', header=0, encoding='utf-8',
                           dtype=np.float32, on_bad_lines='skip')
     return rawData
 
@@ -48,8 +48,7 @@ def saveImage(data, res):
     x_position = [1, 3.5, 6, 8.5]
     for i in range(4):
         bplot = plt.boxplot(
-            [df1.loc[:, x_position_fmt[i]], df2.loc[:, x_position_fmt[i]], df3.loc[:, x_position_fmt[i]],
-             df4.loc[:, x_position_fmt[i]], df5.loc[:, x_position_fmt[i]]],
+            [df1.loc[:, i], df2.loc[:, i], df3.loc[:, i], df4.loc[:, i], df5.loc[:, i]],
             showfliers=False, patch_artist=True,
             labels=labels,
             positions=(1 + 2.5 * i, 1.4 + 2.5 * i, 1.8 + 2.5 * i, 2.2 + 2.5 * i, 2.6 + 2.5 * i),
@@ -65,8 +64,8 @@ def saveImage(data, res):
     plt.legend(handles=legend_handles, title='聚类类别')
 
     plt.xlabel('参数')
-    plt.ylabel('原始数据')
-    plt.savefig('../img/按参数箱型图——原始数据.png')
+    plt.ylabel('归一化数据')
+    plt.savefig('../../img/去除异常值箱型图/按参数的归一化数据箱型图.png')
     plt.show()
 
 
@@ -75,4 +74,4 @@ if __name__ == '__main__':
     data_x = data.values[:, 1:5]
     train_scale = get_train_scale(data_x)
     clustering = agglomerativeClustering(train_scale)
-    saveImage(data, list(clustering.labels_))
+    saveImage(train_scale, list(clustering.labels_))

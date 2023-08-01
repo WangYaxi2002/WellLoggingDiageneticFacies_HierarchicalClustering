@@ -1,4 +1,3 @@
-# 使用曼哈顿距离算法聚类
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -12,7 +11,7 @@ def load_plyl_data():
     # 看见dataFrame的所有行，不然会省略
     pd.set_option('display.max_columns', None)
     pd.set_option('display.max_rows', None)
-    rawData = pd.read_csv(filepath_or_buffer='../data/BAI246_CAL_GR_AC_SP.csv', header=0, encoding='utf-8',
+    rawData = pd.read_csv(filepath_or_buffer='../../data/BAI246_CAL_GR_AC_SP.csv', header=0, encoding='utf-8',
                           dtype=np.float32, on_bad_lines='skip')
     return rawData
 
@@ -26,9 +25,8 @@ def get_train_scale(data_x):
 
 # 使用层次聚类算法
 def agglomerativeClustering(train_scale):
-    ac = AgglomerativeClustering(n_clusters=5, metric='manhattan', linkage='complete')
+    ac = AgglomerativeClustering(n_clusters=5)
     clustering = ac.fit(train_scale)
-
     # 保存聚类结果到csv文件
     # with open('res.csv', 'a') as fp:
     #     for i in clustering.labels_:
@@ -60,7 +58,8 @@ def saveImage(labels: list):
             plt.plot(df5[0], df5[1], 'm*', label='簇5')
             plt.xlabel(data.columns.values[i + 1])
             plt.ylabel(data.columns.values[j + 1])
-            plt.savefig('../img/曼哈顿距离res' + str(i * 4 + j) + '.png')
+            plt.savefig(
+                '../../img/散点图/原始数据图' + data.columns.values[i + 1] + '-' + data.columns.values[j + 1] + '.png')
             plt.show()
 
 

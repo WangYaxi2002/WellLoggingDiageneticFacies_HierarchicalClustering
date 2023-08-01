@@ -9,7 +9,7 @@ from sklearn.cluster import AgglomerativeClustering
 
 
 def load_plyl_data():
-    rawData = pd.read_csv(filepath_or_buffer='../data/BAI246_CAL_GR_AC_SP.csv', header=0, encoding='utf-8',
+    rawData = pd.read_csv(filepath_or_buffer='../../data/BAI246_CAL_GR_AC_SP.csv', header=0, encoding='utf-8',
                           dtype=np.float32, on_bad_lines='skip')
     data = rawData.values[:, 1:5]
     return rawData
@@ -49,5 +49,5 @@ if __name__ == '__main__':
 
     plt.xlabel('DEPTH')
     plt.ylabel('CAL')
-    plt.savefig('../img/1res1.png')
+    plt.savefig('../../img/散点图/1res1.png')
     plt.show()
