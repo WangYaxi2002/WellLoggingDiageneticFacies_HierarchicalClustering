@@ -51,11 +51,15 @@ def saveImage(data, labels: list, headers):
             df4 = df[df['labels'] == 3]
             df5 = df[df['labels'] == 4]
             plt.figure(figsize=(10, 10))
-            plt.plot(df1[0], df1[1], 'bo', label='簇1')
-            plt.plot(df2[0], df2[1], 'g*', label='簇2')
-            plt.plot(df3[0], df3[1], 'r*', label='簇3')
-            plt.plot(df4[0], df4[1], 'c*', label='簇4')
-            plt.plot(df5[0], df5[1], 'm*', label='簇5')
+            plt.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
+            plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
+
+            p1, = plt.plot(df1[0], df1[1], 'bo', label='1')
+            p2, = plt.plot(df2[0], df2[1], 'g*', label='2')
+            p3, = plt.plot(df3[0], df3[1], 'r*', label='3')
+            p4, = plt.plot(df4[0], df4[1], 'c*', label='4')
+            p5, = plt.plot(df5[0], df5[1], 'm*', label='5')
+            plt.legend((p1, p2, p3, p4, p5), ['1', '2', '3', '4', '5'], title='聚类类别')
             plt.xlabel(headers[i + 1])
             plt.ylabel(headers[j + 1])
             plt.savefig('../../img/散点图/归一化数据图' + headers[i + 1] + '-' + headers[j + 1] + '.png')
